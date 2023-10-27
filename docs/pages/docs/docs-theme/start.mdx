@@ -1,0 +1,131 @@
+import { BoxIcon, GearIcon, RowsIcon } from '@components/icons'
+import { Callout, Card, Cards, Steps } from 'nextra/components'
+
+# 文档主题
+
+Nextra文档主题是一个主题，它几乎包括了构建现代文档网站所需的一切。它包括顶部导航
+栏、搜索栏、页面侧边栏、TOC侧边栏和其他内置组件。
+
+这个网站本身就是以Nextra Docs主题构建的。
+
+## 从模板快速启动
+
+### 部署到Vercel
+
+您可以先创建自己的Nextra站点，然后单击链接部署到Vercel:
+
+<a
+  className="mt-3 inline-flex"
+  target="_blank"
+  href="https://vercel.com/new/clone?s=https%3A%2F%2Fgithub.com%2Fshuding%2Fnextra-docs-template&showOptionalTeamCreation=false"
+>
+  ![](https://vercel.com/button)
+</a>
+
+Vercel将派生[Nextra Docs模板](https://github.com/shuding/nextra-docs-template)并
+为您部署站点。一旦完成，存储库中的每个提交都将自动部署。
+
+### 分叉模板
+
+您也可以手动分
+叉[template repository](https://github.com/shuding/nextra-docs-template).
+
+## 作为新项目启动
+
+<Steps>
+### 安装
+
+要手动创建Nextra Docs网站，您必须安
+装**Next.js**、**React**、**Nextra**和**Nextra DocsTheme**。在项目目录中，运行以
+下命令来安装依赖项：
+
+```sh npm2yarn
+npm i next react react-dom nextra nextra-theme-docs
+```
+
+<Callout>
+  如果您的项目中已经安装了Next.js，则只需要安装`nextra`和`nextra-theme-docs`作为附加组件。
+</Callout>
+
+在`package.json`中添加以下脚本：
+
+```json filename="package.json"
+"scripts": {
+  "dev": "next",
+  "build": "next build",
+  "start": "next start"
+},
+```
+
+您可以启动服务器，例如，如果您使用npm，`npm run dev`（将在开发模式下运行）
+或`npm run build&&npm run start`（用于生产模式）。
+
+<Callout>
+  如果您不熟悉Next.js，请注意，开发模式明显较慢，因为Next.js会编译您导航到的每个页面。
+</Callout>
+
+### 添加Next.js配置
+
+在项目的根目录中创建以下`next.config.js`文件：
+
+```js filename="next.config.js"
+const withNextra = require('nextra')({
+  theme: 'nextra-theme-docs',
+  themeConfig: './theme.config.jsx'
+})
+
+module.exports = withNextra()
+
+// If you have other Next.js configurations, you can pass them as the parameter:
+// module.exports = withNextra({ /* other next.js config */ })
+```
+
+通过以上配置，Nextra可以处理Next.js项目中具有指定主题的Markdown文件。其他Nextra
+配置可在[指南](/docs/guide)中找到.
+
+### 创建文档主题配置
+
+最后，在项目的根目录中创建相应的`theme.config.jsx`文件。这将用于配置Nextra Docs
+主题：
+
+```jsx filename="theme.config.jsx"
+export default {
+  logo: <span>My Nextra Documentation</span>,
+  project: {
+    link: 'https://github.com/shuding/nextra'
+  }
+  // ... other theme options
+}
+```
+
+完整的主题配置可以在[这里](/docs/docs-theme/theme-configuration)找到.
+
+### 准备出发！
+
+现在，您可以将第一个MDX页面创建为`pages/index.MDX`：
+
+```mdx filename="pages/index.mdx"
+# Welcome to Nextra
+
+Hello, world!
+```
+
+并运行`package.json`中指定的`next`或`next-dev`命令开始开发项目！🎉
+
+</Steps>
+
+接下来，查看下一节，了解如何组织文档结构和配置网站主题：
+
+<Cards>
+  <Card
+    icon={<RowsIcon />}
+    title="页面结构"
+    href="/docs/docs-theme/page-configuration"
+  />
+  <Card
+    icon={<GearIcon />}
+    title="主题配置"
+    href="/docs/docs-theme/theme-configuration"
+  />
+  <Card icon={<BoxIcon />} title="内置组件" href="/docs/docs-theme/built-ins" />
+</Cards>

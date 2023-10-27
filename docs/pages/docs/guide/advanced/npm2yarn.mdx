@@ -1,0 +1,22 @@
+# Npm2Yarn
+
+Nextra使
+用[`@theguild/remark-npm2yarn`](https://npmjs.com/package/@theguild/remark-npm2yarn)包，
+该包将具有`npm2yarn`元数据的代码块替换为`nextra/components`中
+的[`<Tabs />` 和 `<Tabs.Tab />` 组件](/docs/guide/built-ins/tabs)。
+
+所选选项卡保存在本地存储中，将在将来的页面渲染中选择该存储。
+
+## 实例
+
+```sh npm2yarn
+npm i -D @graphql-eslint/eslint-plugin
+```
+
+## 用法
+
+````mdx filename="Markdown" /npm2yarn/
+```sh npm2yarn
+npm i -D @graphql-eslint/eslint-plugin
+```
+````

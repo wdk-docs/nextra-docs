@@ -1,0 +1,60 @@
+# Nextra
+
+**Nextra**是Next.js之上的一个框架，可以让您构建以内容为中心的网站。它拥有Next.js
+的所有强大功能，还可以轻松创建基于Markdown的内容。
+
+## 快速入门
+
+import { Cards } from 'nextra/components'
+
+要开始使用Nextra，您需要首先选择一个主题：
+
+<Cards num={2}>
+  <Cards.Card
+    image
+    arrow
+    title="Documentation theme"
+    href="/docs/docs-theme/start"
+  >
+    <>![Documentation theme](/assets/docs-theme.png)</>
+  </Cards.Card>
+  <Cards.Card image arrow title="Blog theme" href="/docs/blog-theme/start">
+    <>![Blog theme](/assets/blog-theme.png)</>
+  </Cards.Card>
+</Cards>
+
+如果你想在不使用这些内置主题的情况下使用Nextra，你可以遵
+循[自定义主题](/docs/custom-theme)文档。
+
+## Nextra 常见问题
+
+Nextra常见问题解答是关于该项目的有用问题和答案的集合。如果你有一个问题没有在这里
+得到回答，请[展开讨论](https://github.com/shuding/nextra/discussions).
+
+export function FAQBox({ title, children }) {
+  return (
+    <details
+      open
+      className="last-of-type:mb-0 rounded-lg bg-neutral-50 dark:bg-neutral-800 p-2 mt-4"
+    >
+      <summary>
+        <strong className="text-lg">{title}</strong>
+      </summary>
+      <div className="nx-p-2">{children}</div>
+    </details>
+  )
+}
+
+<FAQBox title="我可以将X与Nextra一起使用吗？">
+  大多数事情的答案都是肯定的。由于Nextra只是一个Next.js插件，
+  几乎所有可以用React完成的事情都可以用Nextra完成。以下是一些示例和指南：
+
+- [使用顺风CSS](/docs/guide/tailwind-css)
+- [使用自定义CSS和Sass](/docs/guide/custom-css)
+- [使用自定义字体](https://nextjs.org/docs/basic-features/font-optimization)
+
+</FAQBox>
+
+<FAQBox title="如何在Nextra中添加实时编码组件？">
+  有像[Sandpack](https://sandpack.codesandbox.io)这样的库和[react-live](https://github.com/FormidableLabs/react-live)它可以帮助您将实时编码组件添加到MDX中。
+</FAQBox>

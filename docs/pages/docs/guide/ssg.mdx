@@ -1,0 +1,73 @@
+# Next.js SSG
+
+使用Next.js，您可以使
+用[Static Generation（SSG）](https://nextjs.org/docs/basic-features/pages#static-generation-recommended)预
+渲染页面. 您的页面将在构建时生成，并静态地提供给访问者。它还可以通过CDN进行缓
+存，以最大限度地提高性能。
+
+Nextra也支持这一点。以下是一个示例：
+
+import { useData } from 'nextra/data'
+
+export const getStaticProps = ({ params }) => {
+  return fetch(`https://api.github.com/repos/shuding/nextra`)
+    .then(res => res.json())
+    .then(repo => ({
+      props: {
+        // We add an `ssg` field to the page props,
+        // which will be provided to the Nextra `useData` hook.
+        ssg: {
+          stars: repo.stargazers_count
+        }
+      },
+      // 该页面将被视为过时，每60秒重新生成一次。
+      revalidate: 60
+    }))
+}
+
+export const Stars = () => {
+  // Get the data from SSG, and render it as a component.
+  const { stars } = useData()
+  return <strong>{stars}</strong>
+}
+
+<div className="mt-6 rounded-xl border border-gray-200 p-4 dark:border-gray-900">
+  Nextra在GitHub上有星
+  <Stars /> ！
+</div>
+
+上面的数字是在构建时通过`getStaticProps`生成的。启
+用[增量静态再生](https://nextjs.org/docs/basic-features/data-fetching#incremental-static-regeneration)后，
+它将保持最新状态。
+
+---
+
+以下是上面示例的MDX代码：
+
+```mdx
+import { useData } from 'nextra/data'
+
+export const getStaticProps = ({ params }) => {
+  return fetch(`https://api.github.com/repos/shuding/nextra`)
+    .then(res => res.json())
+    .then(repo => ({
+      props: {
+        // 我们在页面道具中添加一个`ssg`字段，
+        // 它将被提供给Nextra‘useData’钩子。
+        ssg: {
+          stars: repo.stargazers_count
+        }
+      },
+      // 该页面将被视为过时，每60秒重新生成一次。
+      revalidate: 60
+    }))
+}
+
+export const Stars = () => {
+  // 从SSG获取数据，并将其渲染为组件。
+  const { stars } = useData()
+  return <strong>{stars}</strong>
+}
+
+Nextra has <Stars /> stars on GitHub!
+```

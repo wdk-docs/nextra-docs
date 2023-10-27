@@ -1,0 +1,125 @@
+# Markdown
+
+## MDX
+
+使用Nextra，pages目录下的所有`.mdx`文件都将使用[mdx](https://mdxjs.com/about)呈
+现，这是一种高级Markdown格式，支持React组件。
+
+例如，您可以在Markdown中使用导入和使用React组件
+
+```mdx filename="Markdown"
+## Hello MDX
+
+import { useState } from 'react'
+
+export function Counter({ children }) {
+  const [count, setCount] = useState(0)
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      {children}
+      {count}
+    </button>
+  )
+}
+
+<Counter>**Clicks**: </Counter>
+```
+
+生成:
+
+import { Shadow } from '@components/utils/shadow'
+import { useState } from 'react'
+
+export function Counter({ children }) {
+  const [count, setCount] = useState(0)
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      {children}
+      {count}
+    </button>
+  )
+}
+
+<div className="mt-6 rounded-xl border border-gray-200 p-4 dark:border-gray-900">
+  <Shadow mode="open">
+    <h2>Hello MDX</h2>
+    <Counter>**Clicks**: </Counter>
+  </Shadow>
+</div>
+
+除了基本的MDX，Nextra还内置了一些高级Markdown功能。
+
+## GitHub 风味 Markdown
+
+[GFM](https://github.github.com/gfm)是Markdown的扩展，由GitHub创建，增加了对删除
+线、任务列表、表等的支持。
+
+### 删除线
+
+~~removed~~
+
+```md filename="Markdown"
+~~removed~~
+```
+
+### 任务列表
+
+- [x] Write the press release
+- [ ] Update the website
+- [ ] Contact the media
+
+```md filename="Markdown"
+- [x] Write the press release
+- [ ] Update the website
+- [ ] Contact the media
+```
+
+### 表格
+
+| Syntax        | Description |   Test Text |
+| :------------ | :---------: | ----------: |
+| Header        |    Title    | Here's this |
+| Paragraph     |    Text     |    And more |
+| Strikethrough |             |    ~~Text~~ |
+
+```md filename="Markdown"
+| Syntax        | Description |   Test Text |
+| :------------ | :---------: | ----------: |
+| Header        |    Title    | Here's this |
+| Paragraph     |    Text     |    And more |
+| Strikethrough |             |    ~~Text~~ |
+```
+
+### 自动链接
+
+Visit https://nextjs.org.
+
+```md
+Visit https://nextjs.org.
+```
+
+### 自定义标题Id
+
+您可以使用以下格式`## My heading [#custom-id]`指定自定义标题id. 例如:
+
+```md filename="Markdown"
+## Long heading about Nextra [#about-nextra]
+```
+
+在本例中，`#about-nextra`将用作标题链接，取代默认
+的`#long-heading-about-nextra`。
+
+## 扩展语法突出显示
+
+import { StarsIcon } from '@components/icons'
+import { Card, Cards } from 'nextra/components'
+
+有关详细信息，请查看语法突出显示部分：
+
+<Cards>
+  <Card
+    icon={<StarsIcon />}
+    title="语法突出显示"
+    href="/docs/guide/syntax-highlighting"
+  />
+</Cards>

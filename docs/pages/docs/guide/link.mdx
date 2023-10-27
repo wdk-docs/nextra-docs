@@ -1,0 +1,18 @@
+# Next.js Link
+
+所有相对的Markdown链接都会自动转换为Next.js链接。这意味着目标页面将被预取。当你
+点击一个链接时，页面会像SPA一样加载到客户端，而不会加载整个页面。例如：
+
+```md
+Click [here](/about) to read more.
+```
+
+将相当于：
+
+```jsx
+import Link from 'next/link'
+
+Click <Link href="/about">here</Link> to read more.
+```
+
+此功能使Nextra页面之间的导航快速无缝。

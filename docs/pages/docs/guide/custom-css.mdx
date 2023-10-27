@@ -1,0 +1,32 @@
+# 自定义CSS支持
+
+Nextra
+与[Next.js的内置CSS支持](https://nextjs.org/docs/basic-features/built-in-css-support)100%
+兼容, 包括 `.css`, `.module.css`, 和 Sass (`.scss`, `.sass`, `.module.scss`,
+`.module.sass`) 文件在内.
+
+例如，考虑以下名为`styles.css`的样式表：
+
+```css filename="styles.css"
+body {
+  font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
+    'Arial', sans-serif;
+  padding: 20px 20px 60px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+```
+
+您可以创建一个`pages/_app.js`文件，并在其中导入CSS文件：
+
+```jsx filename="pages/_app.js"
+import '../styles.css'
+
+// This default export is required in a new `pages/_app.js` file.
+export default function MyApp({ Component, pageProps }) {
+  return <Component {...pageProps} />
+}
+```
+
+要了解更多关于Next.js中CSS支持的信息，请查
+看[Next.js文档](https://nextjs.org/docs/basic-features/built-in-css-support).
